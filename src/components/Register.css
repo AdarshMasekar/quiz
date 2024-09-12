@@ -1,0 +1,88 @@
+/* Background and container styling */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    background-image: url('../data/background.jpg');
+    background-size: cover; 
+  }
+  
+  .register-card {
+    background-color: #f5e9e4;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Form title */
+  .register-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Input field styling */
+  .input-field {
+    width: 96%;
+    padding: 10px;
+    margin: 10px 10;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border-color: #999;
+  }
+  
+  /* Register button styling */
+  .register-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #7B979B;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .register-btn:hover,.login-btn:hover {
+    background-color: #507478;
+  }
+  
+  /* Login section styling */
+  .register-link-text {
+    margin-top: 1rem;
+    font-size: 16px;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #7B979B;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-link {
+    color: #7B979B;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  

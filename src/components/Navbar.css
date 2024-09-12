@@ -1,0 +1,65 @@
+/* Navbar.css */
+
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* Dark background */
+    padding: 15px 30px; /* Add some padding */
+    color: white; /* White text */
+    font-family: 'Arial', sans-serif; /* Font */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  }
+  
+  .logo{
+    text-decoration: none;
+    color: white;
+  }
+  /* Logo on the left */
+  .navbar-left {
+    font-size: 24px; /* Large logo text */
+    font-weight: bold;
+  }
+  
+  /* Links on the right */
+  .navbar-right a,
+  .navbar-right button {
+    margin-left: 20px; /* Spacing between links */
+    color: white; /* White text */
+    text-decoration: none; /* No underline */
+    font-size: 16px; /* Consistent font size */
+    padding: 10px 15px; /* Padding inside links */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  .navbar-right a:hover {
+    background-color: #555; /* Lighter background on hover */
+    border-radius: 5px; /* Rounded edges on hover */
+  }
+
+  #logout{
+    background-color:transparent;
+  }
+  #logout:hover{
+    background-color: #c62222 !important;
+    border-radius: 5px; /* Rounded edges on hover */
+  }
+  /* Mobile responsive design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column; /* Stack the navbar vertically */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .navbar-left {
+      margin-bottom: 10px; /* Add spacing between logo and links */
+    }
+  
+    .navbar-right a,
+    .navbar-right button {
+      margin-left: 0; /* Remove left margin on mobile */
+      padding: 10px 0; /* Adjust padding for smaller screens */
+    }
+  }
+  

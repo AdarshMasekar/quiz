@@ -1,0 +1,187 @@
+/* Container for the whole quiz-taking view */
+.quiz-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f9; /* Lighter background for better readability */
+}
+
+/* Sidebar styling */
+.quiz-sidebar {
+  flex: 1;
+  width: 250px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
+}
+
+.toggle-button {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.question-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.question-nav-button {
+  width: 100%;
+  background-color: #f7f7f7;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.question-nav-button.active {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.question-nav-button:hover {
+  background-color: #dfe3f7; /* Add a subtle hover effect */
+}
+
+/* Main quiz content styling */
+.quiz-main-content {
+  flex: 3;
+  padding: 20px;
+}
+
+.all-questions-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.all-question-item {
+  margin-bottom: 20px;
+}
+
+.current-question-container {
+  background-color: #e1e2e4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+  font-weight: 600;
+  font-size: large;
+  margin-bottom: 20px;
+}
+
+.timer {
+  font-size: 1.2rem;
+  color: #3f51b5;
+}
+
+.question-container {
+  margin-top: 20px;
+}
+
+/* Option styling */
+.option-label {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.option{
+  list-style: none;
+}
+/* Style the input */
+.option-input {
+  display: none;
+}
+/* Default option label styling */
+.option-label {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Styling for when the option is selected */
+.option-label.selected {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  border-color: #4caf50; /* Matching border */
+}
+
+/* Hover effect for unselected options */
+.option-label:hover {
+  color: black;
+  background-color: #6aba6e;
+}
+
+/* Buttons for navigation */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.prev-button,
+.next-button,
+.submit-button {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover,
+.submit-button:hover {
+  background-color: #303f9f;
+}
+
+/* Quiz start button */
+.quiz-start-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.start-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #388e3c;
+}

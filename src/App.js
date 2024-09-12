@@ -1,24 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Home from './components/Home';
+import QuizCreation from './components/QuizCreation';
+import QuizTaking from './components/QuizTaking';
+import QuizResults from './components/QuizResults';
+import Login from './components/Login';
+import Register from './components/Register';
+import AdminDashboard from './components/AdminDashboard';
+import UserDashboard from './components/UserDashboard';
+import Navbar from './components/Navbar'; // Import the Navbar component
 
 function App() {
+  const questions = JSON.parse(localStorage.getItem('questions'));
+  const [user, setUser] = useState(null); // State to track the logged-in user
+
+  // On component mount, check if user is already logged in
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (loggedInUser) {
+      setUser(loggedInUser); // Set the logged-in user state from localStorage
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setUser(null); // Clear the user state
+    localStorage.removeItem('loggedInUser'); // Clear the logged-in user from localStorage
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* Navbar is now inside Router */}
+      <Navbar user={user} handleLogout={handleLogout} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/register" element={<Register />} />
+        {/* Role-based routes */}
+        {user ? (
+          <>
+            {user.role === 'admin' ? (
+              <>
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/create" element={<QuizCreation />} />
+                <Route path="/results" element={<QuizResults />} />
+              </>
+            ) : (
+              <>
+                <Route path="/user" element={<UserDashboard />} />
+                <Route path="/take" element={<QuizTaking questions={questions} />} />
+                <Route path="/results" element={<QuizResults />} />
+              </>
+            )}
+            <Route path="*" element={<Navigate to={user.role === 'admin' ? '/admin' : '/user'} />} />
+          </>
+        ) : (
+          <>
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
+      </Routes>
+    </Router>
   );
 }
 

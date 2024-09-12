@@ -1,0 +1,144 @@
+/* Main container for the quiz creation form */
+.quiz-creation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Title styling */
+  .quiz-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Styling for form inputs and group */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Input field and dropdown styling */
+  .form-input, .form-select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  /* Button styling */
+  .add-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Flex container for questions and form */
+  .quiz-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Styling for the questions list */
+  .questions-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Styling for each question item */
+  .question-item {
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* Strong tag styling */
+  .question-item strong {
+    color: #333;
+  }
+  
+  /* Styling for the list of options */
+  .option-list {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  
+  /* Correct option styling */
+  .correct-option {
+    font-weight: bold;
+    color: green;
+  }
+  
+  /* Action buttons for edit and delete */
+  .question-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Edit button */
+  .edit-button {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Delete button */
+  .delete-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Media query for smaller screens to stack elements */
+  @media (max-width: 768px) {
+    .quiz-content {
+      flex-direction: column;  /* Stack form and questions on small screens */
+    }
+  
+    .questions-list {
+      max-width: 100%;
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr; /* Switch to one column on smaller screens */
+    }
+  }
