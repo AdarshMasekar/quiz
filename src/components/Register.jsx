@@ -46,31 +46,33 @@ const Register = () => {
         <h2 className="register-title">Registration Form</h2>
         {error && <p className="error-text">{error}</p>}
         {popUpVisible && <p className="success-text">User Registered successfully</p>}
-        <input
-          type="email"
-          className="input-field"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          className="input-field"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          className="input-field"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <select className="input-field" value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
+        <div className="input-container">
+          <input
+            type="email"
+            className="input-field"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <select className="input-field" value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
         <button className="register-btn" onClick={handleRegister}>
           Register
         </button>

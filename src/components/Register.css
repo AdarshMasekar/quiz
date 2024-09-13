@@ -10,6 +10,7 @@
   }
   
   .register-card {
+    width: 100%;
     background-color: #e0cec2a8;
     padding: 2rem;
     border-radius: 20px;
@@ -33,12 +34,19 @@
   .success-text{
     color: #28a745;
   }
+  .input-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   
   /* Input field styling */
   .input-field {
     width: 96%;
     padding: 10px;
-    margin: 10px 10;
+    margin: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 16px;
@@ -93,4 +101,89 @@
   .login-link:hover {
     text-decoration: underline;
   }
-  
+  /* Small screens (phones) */  
+@media (max-width: 576px) {  
+  .register-container {  
+    height: 100vh;  
+    background-size: cover;  
+    background-position: center;  
+  }  
+  .register-card {  
+    padding: 1rem;  
+    border-radius: 10px;  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+    max-width: 300px;  
+    text-align: center;  
+  }  
+  .input-field {  
+    padding: 0.5rem;  
+    margin: 0.5rem;  
+    border-radius: 5px;  
+  }  
+  .register-btn, .login-btn {  
+    padding: 0.5rem;  
+    margin-top: 1rem;  
+    font-size: 14px;  
+  }  
+  .register-link-text {  
+    font-size: 14px;  
+  }  
+}  
+
+/* Medium screens (tablets) */  
+@media (min-width: 577px) and (max-width: 992px) {  
+  .register-container {  
+    height: 100vh;  
+    background-size: cover;  
+    background-position: center;  
+  }  
+  .register-card {  
+    padding: 1.5rem;  
+    border-radius: 15px;  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+    max-width: 400px;  
+    text-align: center;  
+  }  
+  .input-field {  
+    padding: 0.75rem;  
+    margin: 0.75rem;  
+    border-radius: 7.5px;  
+  }  
+  .register-btn, .login-btn {  
+    padding: 0.75rem;  
+    margin-top: 1.5rem;  
+    font-size: 16px;  
+  }  
+  .register-link-text {  
+    font-size: 16px;  
+  }  
+}  
+
+/* Large screens (laptops) */  
+@media (min-width: 993px) and (max-width: 1200px) {  
+  .register-container {  
+    height: 100vh;  
+    background-size: cover;  
+    background-position: center;  
+  }  
+  .register-card {  
+    padding: 2rem;  
+    border-radius: 20px;  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+    max-width: 500px;  
+    text-align: center;  
+  }  
+  .input-field {  
+    padding: 1rem;  
+    margin: 1rem;  
+    border-radius: 10px;  
+  }  
+  .register-btn, .login-btn {  
+    padding: 1rem;  
+    margin-top: 2rem;  
+    font-size: 18px;  
+  }  
+  .register-link-text {  
+    font-size: 18px;  
+  }  
+}  
