@@ -18,10 +18,9 @@ const Login = ({ setUser }) => {
       const user = userCredential.user; // Firebase Authentication user object
   
       // Step 2: Fetch additional user details from Firestore
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userDoc = await getDoc(doc(db, 'users', user.email));
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        console.log(userData)
         setUser(userData); // Set user data in state
         localStorage.setItem('loggedInUser', JSON.stringify(userData)); // Save logged-in user
         navigate(userData.role === 'admin' ? '/admin' : '/user'); // Redirect based on role

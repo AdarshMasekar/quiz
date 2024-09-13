@@ -27,15 +27,15 @@ const Navbar = ({ user, handleLogout }) => {
           
           <Link to="/admin">Dashboard</Link>
             <Link to="/create">Add Questions</Link>
-            <Link to="/results">See User Details</Link>
-            <button onClick={handleLogout}>Logout</button>
+            <Link to="/leaderboard">LeaderBoard</Link>
+            <button className='nav-btn' onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>
             <Link to="/user">Dashboard</Link>
             <Link to="/take">Take Quiz</Link>
             <Link to="/results">See Results</Link>
-            <button id="logout" onClick={handleLogout}>Logout</button>
+            <button className='nav-btn' onClick={handleLogout}>Logout</button>
           </>
         )}
       </div>

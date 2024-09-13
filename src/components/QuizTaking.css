@@ -17,7 +17,7 @@
 }
 
 .toggle-button {
-  background-color: #3f51b5;
+  background-color: #0069d9;
   color: white;
   padding: 10px;
   border: none;
@@ -49,7 +49,7 @@
 }
 
 .question-nav-button.active {
-  background-color: #3f51b5;
+  background-color: #0069d9;
   color: white;
 }
 
@@ -89,7 +89,7 @@
 
 .timer {
   font-size: 1.2rem;
-  color: #3f51b5;
+  color: #0069d9;
 }
 
 .question-container {
@@ -152,7 +152,7 @@
 .prev-button,
 .next-button,
 .submit-button {
-  background-color: #3f51b5;
+  background-color: #0069d9;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -161,9 +161,10 @@
   transition: background-color 0.3s ease;
 }
 
+.prev-button:hover,
 .next-button:hover,
 .submit-button:hover {
-  background-color: #303f9f;
+  background-color: #004997;
 }
 
 /* Quiz start button */
@@ -184,4 +185,54 @@
 
 .start-button:hover {
   background-color: #388e3c;
+}
+
+
+/* AdminDashboard.css */
+
+.admin-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.user-details-table {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-title {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header {
+  background-color: #f4f4f4;
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-row:hover {
+  background-color: #f1f1f1;
+}
+
+.table-cell {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }

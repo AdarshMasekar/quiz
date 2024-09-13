@@ -91,14 +91,15 @@
   }
   
   /* Action buttons for edit and delete */
-  .question-actions {
+  .action-btn {
     display: flex;
     gap: 10px;
+    padding: 10px;
     margin-top: 10px;
   }
   
   /* Edit button */
-  .edit-button {
+  .edit-btn {
     padding: 5px 10px;
     background-color: #28a745;
     color: white;
@@ -107,22 +108,22 @@
     cursor: pointer;
   }
   
-  .edit-button:hover {
+  .edit-btn:hover {
     background-color: #218838;
   }
   
   /* Delete button */
-  .delete-button {
+  .delete-btn {
     padding: 5px 10px;
-    background-color: #dc3545;
+    background-color: #c72939;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
   }
   
-  .delete-button:hover {
-    background-color: #c82333;
+  .delete-btn:hover {
+    background-color: #9d0514;
   }
   
   /* Media query for smaller screens to stack elements */

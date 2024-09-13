@@ -24,7 +24,7 @@
   
   /* Links on the right */
   .navbar-right a,
-  .navbar-right button {
+  .navbar-right .nav-btn {
     margin-left: 20px; /* Spacing between links */
     color: white; /* White text */
     text-decoration: none; /* No underline */
@@ -38,10 +38,10 @@
     border-radius: 5px; /* Rounded edges on hover */
   }
 
-  #logout{
+  .nav-btn{
     background-color:transparent;
   }
-  #logout:hover{
+  .nav-btn:hover{
     background-color: #c62222 !important;
     border-radius: 5px; /* Rounded edges on hover */
   }

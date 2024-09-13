@@ -15,15 +15,19 @@
     text-align: center;
     margin-bottom: 20px;
   }
+
+  .table-header,.table-cell{
+    padding: 10px;
+  }
   
-  .user-info {
+    .user-info {
     text-align: center;
     margin-bottom: 20px;
   }
   
   .user-name {
     font-size: 22px;
-    color: #f39c12;
+    color: #0069d9;
   }
   
   .quiz-stats {
