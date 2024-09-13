@@ -39,6 +39,7 @@ const Login = ({ setUser }) => {
       <div className="login-card">
         <h2 className="login-title">Login</h2>
         {error && <p className="error-text">{error}</p>}
+        <div className="input-container">
         <input
           type="email"
           className="input-field"
@@ -53,6 +54,7 @@ const Login = ({ setUser }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        </div>
         <button className="login-btn" onClick={handleLogin}>
           Login
         </button>

@@ -10,6 +10,7 @@
   }
   
   .login-card {
+    width: 100%;
     background-color: #e0cec2a8;
     padding: 2rem;
     border-radius: 20px;
