@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Import Firestore
 import './QuizCreation.css'; // Import the CSS
 
 const QuizCreation = () => {
@@ -6,28 +8,67 @@ const QuizCreation = () => {
   const [questionText, setQuestionText] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
   const [correctOption, setCorrectOption] = useState('');
+  const [editingQuestionId, setEditingQuestionId] = useState(null);
 
   useEffect(() => {
-    // Load questions from localStorage or use an empty array if none exist
-    const savedQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    setQuestions(savedQuestions);
+    const loadQuestions = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'questions'));
+        const loadedQuestions = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setQuestions(loadedQuestions);
+      } catch (error) {
+        console.error('Error loading questions:', error.message);
+      }
+    };
+
+    loadQuestions();
   }, []);
 
-  const handleAddQuestion = () => {
-    const newQuestions = [
-      ...questions,
-      {
+  const handleAddQuestion = async () => {
+    try {
+      const newQuestion = {
         question: questionText,
         options: options,
         correct: correctOption
-      }
-    ];
-    setQuestions(newQuestions);
-    localStorage.setItem('questions', JSON.stringify(newQuestions)); // Save updated questions to localStorage
+      };
 
-    setQuestionText('');
-    setOptions(['', '', '', '']);
-    setCorrectOption('');
+      if (editingQuestionId) {
+        // Update existing question
+        const questionRef = doc(db, 'questions', editingQuestionId);
+        await updateDoc(questionRef, newQuestion);
+        setQuestions(questions.map(q => (q.id === editingQuestionId ? { ...q, ...newQuestion } : q)));
+        setEditingQuestionId(null);
+      } else {
+        // Add new question
+        const docRef = await addDoc(collection(db, 'questions'), newQuestion);
+        setQuestions([...questions, { id: docRef.id, ...newQuestion }]);
+      }
+
+      setQuestionText('');
+      setOptions(['', '', '', '']);
+      setCorrectOption('');
+    } catch (error) {
+      console.error('Error adding/updating question:', error.message);
+    }
+  };
+
+  const handleEditQuestion = (id) => {
+    const question = questions.find(q => q.id === id);
+    if (question) {
+      setQuestionText(question.question);
+      setOptions(question.options);
+      setCorrectOption(question.correct);
+      setEditingQuestionId(id);
+    }
+  };
+
+  const handleDeleteQuestion = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'questions', id));
+      setQuestions(questions.filter(q => q.id !== id));
+    } catch (error) {
+      console.error('Error deleting question:', error.message);
+    }
   };
 
   return (
@@ -70,14 +111,14 @@ const QuizCreation = () => {
         </select>
 
         <button className="add-button" onClick={handleAddQuestion}>
-          Add Question
+          {editingQuestionId ? 'Update Question' : 'Add Question'}
         </button>
       </div>
 
       <ul className="questions-list">
         {questions.map((q, index) => (
           <li key={index} className="question-item">
-            <strong>Q{index + 1}: </strong>{q.question}
+            <strong>Q{index + 1}: {q.question}</strong>
             <ul className="option-list">
               {q.options.map((option, optIndex) => (
                 <li key={optIndex} className={option === q.correct ? "correct-option" : ""}>
@@ -85,6 +126,10 @@ const QuizCreation = () => {
                 </li>
               ))}
             </ul>
+            <div className="question-actions">
+              <button onClick={() => handleEditQuestion(q.id)}>Edit</button>
+              <button onClick={() => handleDeleteQuestion(q.id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>

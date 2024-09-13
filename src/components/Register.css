@@ -25,6 +25,14 @@
     margin-bottom: 1.5rem;
     color: #333;
   }
+
+  .error-text{
+    color: #dc3545;
+  }
+
+  .success-text{
+    color: #28a745;
+  }
   
   /* Input field styling */
   .input-field {

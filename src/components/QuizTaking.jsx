@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db, collection, getDocs } from '../firebaseConfig'; // Import Firebase functions
 import './QuizTaking.css'; // Import the CSS
 
 const getRandomQuestions = (questions, num) => {
@@ -26,9 +27,18 @@ const QuizTaking = () => {
     }
     setUsername(loggedInUser.username);
 
-    // Load questions from localStorage
-    const savedQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    setQuestions(getRandomQuestions(savedQuestions, 20)); // Choose a random set of 20 questions
+    // Fetch questions from Firebase
+    const fetchQuestions = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'questions'));
+        const fetchedQuestions = querySnapshot.docs.map(doc => doc.data());
+        setQuestions(getRandomQuestions(fetchedQuestions, 20)); // Choose a random set of 20 questions
+      } catch (error) {
+        console.error('Error fetching questions from Firebase:', error);
+      }
+    };
+
+    fetchQuestions();
   }, [navigate]);
 
   useEffect(() => {
@@ -61,8 +71,6 @@ const QuizTaking = () => {
     localStorage.setItem('quizResults', JSON.stringify(results)); // Store results in localStorage
     navigate('/results');
   };
-  
-  
 
   if (!questions || questions.length === 0 || !questions[currentQuestionIndex]) {
     return <p>No questions available or invalid question index.</p>;
