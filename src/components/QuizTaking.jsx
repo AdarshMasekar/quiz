@@ -73,49 +73,71 @@ const QuizTaking = () => {
     setSelectedAnswers(updatedAnswers);
   };
 
-  // Handle quiz submission
   const handleSubmit = async () => {
-    const timeTakenDuringQuiz = 20 * 60 - timeLeft; // Time taken to complete the quiz
-    const sanitizedAnswers = (selectedAnswers || []).map((answer) => answer !== undefined ? answer : 'not answered'); // Replace undefined with 'not answered'
+    const timeTakenDuringQuiz = 20 * 60 - timeLeft;
+    const sanitizedAnswers = (selectedAnswers || []).map((answer) => answer !== undefined ? answer : 'not answered');
     const sanitizedQuestions = questions || [];
     let score = 0;
-
-    // Calculate the score
+    const correctAnswers = sanitizedQuestions.map((q) => q.correct); // Collect correct answers for each question
+    
     sanitizedAnswers.forEach((answer, index) => {
       const correctAnswer = sanitizedQuestions[index]?.correct;
       if (answer === correctAnswer) {
         score += 1;
       }
     });
-
-    // Ensure userEmail is valid
+  
     if (userEmail) {
       try {
-        // Use userEmail as the document ID for the results collection
-        const resultsRef = doc(db, 'results', userEmail);
-
-        // Prepare the result data with default values
         const result = {
           userEmail: userEmail || 'anonymous',
           score: score || 0,
-          timeTaken: timeTakenDuringQuiz || 0,
+          timeTaken: timeTakenDuringQuiz,
           timestamp: new Date().toISOString(),
-          questionsAnswered: sanitizedAnswers.length > 0 ? sanitizedAnswers : [], // Ensure questionsAnswered is an array
+          userAnswers: sanitizedAnswers, // Store user's answers
+          correctAnswers: correctAnswers, // Store correct answers for comparison
+          questionsAnswered: sanitizedQuestions, // Store questions text for display in results
         };
-
-        // Store quiz result in the 'results' collection
-        await setDoc(resultsRef, result); // Add the result data to the collection
-
-        // Navigate to the results page
-        navigate('/results');
+  
+        const resultsRef = doc(db, 'results', userEmail);
+        await setDoc(resultsRef, result);
+  
+        // Updating user information in the 'users' collection
+        const usersRef = doc(db, 'users', userEmail);
+        const previousResult = await getDoc(usersRef);
+  
+        if (previousResult.exists()) {
+          const previousData = previousResult.data();
+          const updatedData = {
+            ...previousData,
+            highestScore: Math.max(previousData.highestScore || 0, score || 0),
+          };
+          await setDoc(usersRef, updatedData);
+        } else {
+          const userData = {
+            email: userEmail,
+            highestScore: score || 0,
+            quizzesTaken: 1,
+            rank: 0,
+            registrationDate: new Date().toISOString(),
+            role: 'user',
+            timeTakenForBestScore: timeTakenDuringQuiz,
+            uid: userEmail,
+            username: userEmail,
+          };
+          await setDoc(usersRef, userData);
+        }
+  
+        navigate('/results'); // Redirect to results after quiz is submitted
       } catch (error) {
         console.error('Error updating user data in Firebase:', error);
       }
     }
   };
-
+  
+  
   if (!questions.length || !questions[currentQuestionIndex]) {
-    return <p>No questions available or invalid question index.</p>;
+    return <p className='no-results'>No questions available or invalid question index.</p>;
   }
 
   const currentQuestion = questions[currentQuestionIndex];

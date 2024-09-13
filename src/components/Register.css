@@ -101,6 +101,7 @@
   .login-link:hover {
     text-decoration: underline;
   }
+  
   /* Small screens (phones) */  
 @media (max-width: 576px) {  
   .register-container {  

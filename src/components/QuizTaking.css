@@ -190,7 +190,7 @@
 
 /* AdminDashboard.css */
 
-.admin-title {
+.admin-title,.no-results {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -203,6 +203,10 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
+}
+
+.no-results{
+  margin:10px auto;
 }
 
 .table-title {

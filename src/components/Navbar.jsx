@@ -19,23 +19,28 @@ const Navbar = ({ user, handleLogout }) => {
       <div className="navbar-right">
         {!user ? (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+           <div className="navbar-links">
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </div>
           </>
         ) : user.role === 'admin' ? (
           <>
-          
-          <Link to="/admin">Dashboard</Link>
-            <Link to="/create">Add Questions</Link>
-            <Link to="/leaderboard">LeaderBoard</Link>
-            <button className='nav-btn' onClick={handleLogout}>Logout</button>
+            <div className="navbar-links">
+              <Link to="/admin">Dashboard</Link>
+              <Link to="/create">Add Questions</Link>
+              <Link to="/leaderboard">LeaderBoard</Link>
+              <button className='nav-btn' onClick={handleLogout}>Logout</button>
+            </div>
           </>
         ) : (
           <>
-            <Link to="/user">Dashboard</Link>
-            <Link to="/take">Take Quiz</Link>
-            <Link to="/results">See Results</Link>
-            <button className='nav-btn' onClick={handleLogout}>Logout</button>
+            <div className="navbar-links">
+              <Link to="/user">Dashboard</Link>
+              <Link to="/take">Take Quiz</Link>
+              <Link to="/results">See Results</Link>
+              <button className='nav-btn' onClick={handleLogout}>Logout</button>
+            </div>
           </>
         )}
       </div>
